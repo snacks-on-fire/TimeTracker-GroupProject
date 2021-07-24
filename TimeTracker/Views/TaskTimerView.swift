@@ -13,11 +13,30 @@ struct TaskTimerView: View {
     // an initializer init(task:) is automatically created for us; it’s the memberwise initializer.
     var task: Task
     
+    @State var tabIndex = 1
+    
     var body: some View {
-        VStack {
-            Text(task.name)
-            Text(task.nameName!)
-        }
+        TabView(selection: $tabIndex) {
+            Text("This is the Timer View for \(task.name)")
+                .tabItem {
+                    VStack {
+                        Image(systemName: "clock")
+                        Text("Start Timer")
+                    }
+                }.tag(1)
+            VStack {
+                Text("This is the Picker view for \(task.name)")
+                Text("This is some more text.")
+            }
+            .tabItem {
+                VStack {
+                    Image(systemName: "clock.fill")
+                    Text("Add a session")
+                }
+            }.tag(2)
+    
+        }.navigationBarTitle(task.name)
+        
     }
 }
 
