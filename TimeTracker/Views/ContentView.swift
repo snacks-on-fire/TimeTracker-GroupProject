@@ -47,3 +47,6 @@ struct ContentView_Previews: PreviewProvider {
         ContentView()
     }
 }
+
+// https://www.hackingwithswift.com/books/ios-swiftui/adding-to-a-list-of-words
+
