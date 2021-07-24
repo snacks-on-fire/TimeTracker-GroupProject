@@ -12,6 +12,7 @@ struct ContentView: View {
     @State private var usedWords = [String]()
     @State private var rootWord = "Tasks"
     @State private var newWord = ""
+    @State var data = [Task]()
     
     var body: some View {
         NavigationView {
@@ -22,22 +23,24 @@ struct ContentView: View {
                     .padding()
                 
                 List (0..<usedWords.count, id: \.self) { item in
-                    NavigationLink(destination: TaskTimerView()) {
-                    Text(usedWords[item])
-                    }
-                }.navigationBarTitle(rootWord)
-            }
+                    NavigationLink(
+                        destination: TaskTimerView(task: data[item]),
+                        label: {Text(usedWords[item])})
+                }
+            }.navigationBarTitle(rootWord)
         }
     }
     
+    
     func addNewWord() {
         let answer = newWord.trimmingCharacters(in: .whitespacesAndNewlines)
-        
+
         guard answer.count > 0 else {
             return
         }
         
         usedWords.insert(answer, at: 0)
+        data.insert(Task(name: answer, nameName: answer), at: 0)
         newWord = ""
     }
 }
