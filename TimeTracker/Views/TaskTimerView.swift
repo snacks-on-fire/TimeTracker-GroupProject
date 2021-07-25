@@ -21,6 +21,9 @@ struct TaskTimerView: View {
     @ObservedObject var model = SessionModel()
     //    let model = SessionModel()
     
+    @State var buttons = Buttons()
+    @ObservedObject var buttonsModel = ButtonsModel()
+    
     // @State property wrapper allows us to change the values
     // i.e. w/o the @State property wrapper, the values are immutable
     @State var tabIndex = 1
@@ -30,10 +33,6 @@ struct TaskTimerView: View {
     @State var deltaString = ""
     @State var totalTimeString = ""
     @State var saveMessage = ""
-    @State var startB = true
-    @State var stopB = false
-    @State var resetB = false
-    @State var saveB = false
     
     var body: some View {
         TabView(selection: $tabIndex) {
@@ -62,12 +61,12 @@ struct TaskTimerView: View {
                         // Save as string
                         fromDateString = ("Session start: " + model.getDateTime(dateValue: session.fromDate))
                         
-                        startB = false
-                        stopB = true
-                        resetB = true
-                        saveB = false
+                        buttons.startB = false
+                        buttons.stopB = true
+                        buttons.resetB = true
+                        buttons.saveB = false
                     }.padding()
-                    .disabled(startB == false)
+                    .disabled(buttons.startB == false)
                     
                     Button("STOP") {
                         
@@ -81,12 +80,12 @@ struct TaskTimerView: View {
                         toDateString = ("Session end: " + model.getDateTime(dateValue: session.toDate))
                         deltaString = ("Session duration: \n" + model.getDelta(intervalValue: session.delta))
                         
-                        startB = false
-                        stopB = false
-                        resetB = true
-                        saveB = true
+                        buttons.startB = false
+                        buttons.stopB = false
+                        buttons.resetB = true
+                        buttons.saveB = true
                     }.padding()
-                    .disabled(stopB == false)
+                    .disabled(buttons.stopB == false)
                     
                     Button("SAVE") {
                         task.sessions?.append(session)
@@ -95,12 +94,12 @@ struct TaskTimerView: View {
                         saveMessage = "Session info saved successfully."
                         totalTimeString = ("Total time spent on \(task.name) is \(model.getDelta(intervalValue: task.totalTime))")
                         
-                        startB = true
-                        stopB = false
-                        resetB = false
-                        saveB = false
+                        buttons.startB = true
+                        buttons.stopB = false
+                        buttons.resetB = false
+                        buttons.saveB = false
                     }.padding()
-                    .disabled(saveB == false)
+                    .disabled(buttons.saveB == false)
                     
                     Button("RESET") {
                         // Add code to delete session
@@ -108,12 +107,12 @@ struct TaskTimerView: View {
                         toDateString = ""
                         deltaString = ""
                         saveMessage = ""
-                        startB = true
-                        stopB = false
-                        resetB = false
-                        saveB = false
+                        buttons.startB = true
+                        buttons.stopB = false
+                        buttons.resetB = false
+                        buttons.saveB = false
                     }.padding()
-                    .disabled(resetB == false)
+                    .disabled(buttons.resetB == false)
                     
                 }.padding()
                 
