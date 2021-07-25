@@ -9,10 +9,9 @@ import SwiftUI
 
 struct ContentView: View {
     
-    @State private var usedWords = [String]()
+    @ObservedObject var tasks = TaskModel()
     @State private var rootWord = "Tasks"
     @State private var newWord = ""
-    @State var data = [Task]()
     
     var body: some View {
         NavigationView {
@@ -22,33 +21,40 @@ struct ContentView: View {
                     .autocapitalization(.none)
                     .padding()
                 
-                List (0..<usedWords.count, id: \.self) { item in
-                    NavigationLink(
-                        // Note that "task" only appears once on this screen.
-                        // This is because that's the name of the variable that is passed to the next screen
-                        // that is, "task == data[item]" is True
-                        // This next appears in the receiver in TaskTimerView_Previews
-                        destination: TaskTimerView(task: data[item]),
-                        // either this statement or the following is fine
-                        // because usedWords[item] is the same as data[item].name
-                        // label: {Text(usedWords[item])})
-                        label: {Text(String(data[item].name))})
+                List {
+                    ForEach(tasks.items) { item in
+                        NavigationLink(
+                            // "task" only appears once on this screen because that's the name of the variable that is passed to the next screen
+                            // that is, "task == tasks[item]" is True
+                            // This next appears in the receiver in TaskTimerView_Previews
+                            destination: TaskTimerView(task: item),
+//                            label: {Text("Text")})
+                            label: {Text(item.name)})
+                    }.onDelete(perform: removeItems)
                 }
-                Text(String(data.count))
             }.navigationBarTitle(rootWord)
         }
     }
 
     func addNewWord() {
+        // Format the newWord
         let answer = newWord.trimmingCharacters(in: .whitespacesAndNewlines)
-
+        
+        // Make sure it has more than 0 characters
         guard answer.count > 0 else {
             return
         }
         
-        usedWords.insert(answer, at: 0)
-        data.insert(Task(name: answer), at: 0)
+        // Create an instance of Task & give it a name. Append to tasks
+        let newTask = Task()
+        newTask.name = answer
+        tasks.items.insert(newTask, at: 0)
+
         newWord = ""
+    }
+    
+    func removeItems(at offsets: IndexSet) {
+        tasks.items.remove(atOffsets: offsets)
     }
 }
 
@@ -60,3 +66,9 @@ struct ContentView_Previews: PreviewProvider {
 
 // https://www.hackingwithswift.com/books/ios-swiftui/adding-to-a-list-of-words
 
+// MVVM model use
+// https://www.hackingwithswift.com/books/ios-swiftui/building-a-list-we-can-delete-from
+// UUID https://www.hackingwithswift.com/books/ios-swiftui/working-with-identifiable-items-in-swiftui
+
+// Archiving Swift objects with Codable
+// https://www.hackingwithswift.com/books/ios-swiftui/archiving-swift-objects-with-codable

@@ -17,6 +17,8 @@
 		2BBAEB6426AC4EA500AC843E /* ModeSwitchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BBAEB6326AC4EA500AC843E /* ModeSwitchView.swift */; };
 		2BBAEB7826AD85D100AC843E /* SessionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BBAEB7726AD85D100AC843E /* SessionModel.swift */; };
 		2BBAEB7B26AD862E00AC843E /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BBAEB7A26AD862E00AC843E /* Session.swift */; };
+		2BBAEBB826AE2A2400AC843E /* Buttons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BBAEBB726AE2A2400AC843E /* Buttons.swift */; };
+		2BBAEBBB26AE2AF100AC843E /* ButtonsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BBAEBBA26AE2AF100AC843E /* ButtonsModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +34,8 @@
 		2BBAEB6326AC4EA500AC843E /* ModeSwitchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModeSwitchView.swift; sourceTree = "<group>"; };
 		2BBAEB7726AD85D100AC843E /* SessionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionModel.swift; sourceTree = "<group>"; };
 		2BBAEB7A26AD862E00AC843E /* Session.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
+		2BBAEBB726AE2A2400AC843E /* Buttons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Buttons.swift; sourceTree = "<group>"; };
+		2BBAEBBA26AE2AF100AC843E /* ButtonsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonsModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,6 +92,7 @@
 			children = (
 				2BBAEA6926AB810200AC843E /* Task.swift */,
 				2BBAEB7A26AD862E00AC843E /* Session.swift */,
+				2BBAEBB726AE2A2400AC843E /* Buttons.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -106,6 +111,7 @@
 			children = (
 				2BBAEAA826AB9A4300AC843E /* TaskModel.swift */,
 				2BBAEB7726AD85D100AC843E /* SessionModel.swift */,
+				2BBAEBBA26AE2AF100AC843E /* ButtonsModel.swift */,
 				2BBAEB6326AC4EA500AC843E /* ModeSwitchView.swift */,
 			);
 			path = ViewModels;
@@ -180,6 +186,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2BBAEBB826AE2A2400AC843E /* Buttons.swift in Sources */,
 				2BBAEA5B26AB80C900AC843E /* ContentView.swift in Sources */,
 				2BBAEA6A26AB810200AC843E /* Task.swift in Sources */,
 				2BBAEAAD26AB9A7500AC843E /* TaskTimerView.swift in Sources */,
@@ -188,6 +195,7 @@
 				2BBAEA5926AB80C900AC843E /* TimeTrackerApp.swift in Sources */,
 				2BBAEB7826AD85D100AC843E /* SessionModel.swift in Sources */,
 				2BBAEB6426AC4EA500AC843E /* ModeSwitchView.swift in Sources */,
+				2BBAEBBB26AE2AF100AC843E /* ButtonsModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -7,7 +7,9 @@
 
 import Foundation
 
-class SessionModel {
+class SessionModel: ObservableObject {
+    
+    @ Published var sessions = [Session]()
     
     // Methods
     

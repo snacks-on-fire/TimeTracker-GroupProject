@@ -7,11 +7,11 @@
 
 import Foundation
 
-struct Task: Identifiable {
+class Task: Identifiable {
     
     var id = UUID()
     var name: String = ""
     var sessions: [Session]?
-    var totalTime: Double = 0
+    var totalTime: Double = Double()
 
 }

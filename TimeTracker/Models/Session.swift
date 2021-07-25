@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Session: Identifiable {
+class Session: Identifiable {
     
     var id = UUID()
     var fromDate = Date()

@@ -11,10 +11,15 @@ struct TaskTimerView: View {
     
     // Properties
     
-    // Property task of type Task.
-    // This property does not have an initial value.
-    // An initializer init(task:) is automatically created for us; it’s the memberwise initializer.
+    // Property task of type Task. This property does not have an initial value.
+    // This way the memberwise initializer init(task:) is automatically created.
+    // The value is passed to the task property from ContentView.
     @State var task: Task
+    @ObservedObject var tasks = TaskModel()
+    
+    @State var session = Session()
+    @ObservedObject var model = SessionModel()
+    //    let model = SessionModel()
     
     // @State property wrapper allows us to change the values
     // i.e. w/o the @State property wrapper, the values are immutable
@@ -30,14 +35,13 @@ struct TaskTimerView: View {
     @State var resetB = false
     @State var saveB = false
     
-    @State var session = Session()
-    let model = SessionModel()
-    
     var body: some View {
         TabView(selection: $tabIndex) {
             
             VStack (alignment: .center) {
                 Text("This is the Timer View for \(task.name)")
+//                Text("This is the Timer View for \(task.id)")
+                Text("The total time for \(task.name) is \(model.getDelta(intervalValue: task.totalTime)).")
                 Text(" ")
                 
                 Text("Add Ticking Timer Label Here \n 00:00:00").multilineTextAlignment(.center).padding()
@@ -117,7 +121,7 @@ struct TaskTimerView: View {
                 Text(toDateString).padding()
                 Text(deltaString).multilineTextAlignment(.center).padding()
                 Text(saveMessage)
-                Text(totalTimeString)
+//                Text(totalTimeString)
                 
             }
             .tabItem {
@@ -140,14 +144,22 @@ struct TaskTimerView: View {
     }
 }
 
+#if DEBUG
 struct TaskTimerView_Previews: PreviewProvider {
     
     static var previews: some View {
         
-        // The TaskTimerView_Preview creates an instance of the TaskModel
-        let viewModel = TaskModel()
-        // and passes task == data[item], which is an instance of Task() created on the CotentView, to the ViewModel into the tasks array at position 0
-        TaskTimerView(task: viewModel.tasks[0])
+        // The preview needs a value to initialize the task: Task property
+        TaskTimerView(task: Task())
         
     }
 }
+#endif
+
+/*
+class TaskModel: ObservableObject {
+
+    @ Published var items = [Task]()
+
+}
+*/
