@@ -9,8 +9,12 @@ import Foundation
 
 class TaskModel:ObservableObject {
     
+    // Properties
     @ Published var tasks = [Task]()
+    // tasks is the same array as data = [Task]() created in the ContentView
     
+    /*
+    // Method
     init() {
         
         // Create an instance of data service and get the data
@@ -19,8 +23,11 @@ class TaskModel:ObservableObject {
         self.recipes = service.getLocalData()
     */
         
-        tasks.append(Task(name: "Task 1", nameName: "Task 1*"))
-        tasks.append(Task(name: "Task 2", nameName: "Task 2*"))
-        tasks.append(Task(name: "Task 3", nameName: "Task 3*"))
+        // Some random piece of code to initialize the ViewModel
+        tasks.append(Task(name: "Task 1"))
     }
+     
+     // Turns out, this code isn't needed at all! :)
+     
+     */
 }

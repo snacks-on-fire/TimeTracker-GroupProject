@@ -14,6 +14,9 @@
 		2BBAEA6A26AB810200AC843E /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BBAEA6926AB810200AC843E /* Task.swift */; };
 		2BBAEAA926AB9A4300AC843E /* TaskModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BBAEAA826AB9A4300AC843E /* TaskModel.swift */; };
 		2BBAEAAD26AB9A7500AC843E /* TaskTimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BBAEAAC26AB9A7500AC843E /* TaskTimerView.swift */; };
+		2BBAEB6426AC4EA500AC843E /* ModeSwitchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BBAEB6326AC4EA500AC843E /* ModeSwitchView.swift */; };
+		2BBAEB7826AD85D100AC843E /* SessionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BBAEB7726AD85D100AC843E /* SessionModel.swift */; };
+		2BBAEB7B26AD862E00AC843E /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BBAEB7A26AD862E00AC843E /* Session.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +29,9 @@
 		2BBAEA6926AB810200AC843E /* Task.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Task.swift; sourceTree = "<group>"; };
 		2BBAEAA826AB9A4300AC843E /* TaskModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskModel.swift; sourceTree = "<group>"; };
 		2BBAEAAC26AB9A7500AC843E /* TaskTimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskTimerView.swift; sourceTree = "<group>"; };
+		2BBAEB6326AC4EA500AC843E /* ModeSwitchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModeSwitchView.swift; sourceTree = "<group>"; };
+		2BBAEB7726AD85D100AC843E /* SessionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionModel.swift; sourceTree = "<group>"; };
+		2BBAEB7A26AD862E00AC843E /* Session.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,6 +87,7 @@
 			isa = PBXGroup;
 			children = (
 				2BBAEA6926AB810200AC843E /* Task.swift */,
+				2BBAEB7A26AD862E00AC843E /* Session.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -98,6 +105,8 @@
 			isa = PBXGroup;
 			children = (
 				2BBAEAA826AB9A4300AC843E /* TaskModel.swift */,
+				2BBAEB7726AD85D100AC843E /* SessionModel.swift */,
+				2BBAEB6326AC4EA500AC843E /* ModeSwitchView.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -175,7 +184,10 @@
 				2BBAEA6A26AB810200AC843E /* Task.swift in Sources */,
 				2BBAEAAD26AB9A7500AC843E /* TaskTimerView.swift in Sources */,
 				2BBAEAA926AB9A4300AC843E /* TaskModel.swift in Sources */,
+				2BBAEB7B26AD862E00AC843E /* Session.swift in Sources */,
 				2BBAEA5926AB80C900AC843E /* TimeTrackerApp.swift in Sources */,
+				2BBAEB7826AD85D100AC843E /* SessionModel.swift in Sources */,
+				2BBAEB6426AC4EA500AC843E /* ModeSwitchView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

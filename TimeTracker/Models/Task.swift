@@ -8,20 +8,10 @@
 import Foundation
 
 struct Task: Identifiable {
-
-    var id = UUID()
-    var name: String
-    var nameName: String?
-//    var sessions: [Session]?
-
-}
-
-/*
-struct Session: Identifiable {
     
     var id = UUID()
-    var date = Date()
-    
-}
-*/
+    var name: String = ""
+    var sessions: [Session]?
+    var totalTime: Double = 0
 
+}
