@@ -15,11 +15,10 @@ struct TaskTimerView: View {
     // This way the memberwise initializer init(task:) is automatically created.
     // The value is passed to the task property from ContentView.
     @State var task: Task
-    @ObservedObject var tasks = TaskModel()
+//    @ObservedObject var tasks = TaskModel()
     
-    @State var session = Session()
-    @ObservedObject var model = SessionModel()
-    //    let model = SessionModel()
+    @State var session = TaskSession()
+    @ObservedObject var sessions = SessionModel()
     
     @State var buttons = Buttons()
     @ObservedObject var buttonsModel = ButtonsModel()
@@ -38,12 +37,13 @@ struct TaskTimerView: View {
         TabView(selection: $tabIndex) {
             
             VStack (alignment: .center) {
-                Text("This is the Timer View for \(task.name)")
-//                Text("This is the Timer View for \(task.id)")
-                Text("The total time for \(task.name) is \(model.getDelta(intervalValue: task.totalTime)).")
-                Text(" ")
                 
-                Text("Add Ticking Timer Label Here \n 00:00:00").multilineTextAlignment(.center).padding()
+                VStack {
+                    Text("This is the Timer View for \(task.name)")
+                    // Text("This is the Timer View for \(task.id)")
+                    Text("The total time for \(task.name) is \(sessions.getDelta(intervalValue: task.totalTime)).")
+                    Text("Add Ticking Timer Label Here \n 00:00:00").multilineTextAlignment(.center).padding()
+                }
                 
                 HStack {
                     Button("START") {
@@ -55,15 +55,15 @@ struct TaskTimerView: View {
                         // To test the code, try a date in the past (for fromDate)
                         let dateFormatter = DateFormatter()
                         dateFormatter.dateFormat = "MM/dd/yyyy"
-                        session.fromDate = (dateFormatter.date(from: "03/15/1998"))!
+                        session.fromDate = (dateFormatter.date(from: "07/15/2021"))!
                         */
 
                         // Save as string
-                        fromDateString = ("Session start: " + model.getDateTime(dateValue: session.fromDate))
+                        fromDateString = ("Session start: " + sessions.getDateTime(dateValue: session.fromDate))
                         
-                        buttons.startB = false
-                        buttons.stopB = true
-                        buttons.resetB = true
+                        buttons.startB = true
+                        buttons.stopB = false
+                        buttons.resetB = false
                         buttons.saveB = false
                     }.padding()
                     .disabled(buttons.startB == false)
@@ -77,8 +77,8 @@ struct TaskTimerView: View {
 
                         
                         // Save as string
-                        toDateString = ("Session end: " + model.getDateTime(dateValue: session.toDate))
-                        deltaString = ("Session duration: \n" + model.getDelta(intervalValue: session.delta))
+                        toDateString = ("Session end: " + sessions.getDateTime(dateValue: session.toDate))
+                        deltaString = ("Session duration: " + sessions.getDelta(intervalValue: session.delta))
                         
                         buttons.startB = false
                         buttons.stopB = false
@@ -88,11 +88,17 @@ struct TaskTimerView: View {
                     .disabled(buttons.stopB == false)
                     
                     Button("SAVE") {
-                        task.sessions?.append(session)
+                        // The two lines of code below mean the same thing and both work equally well:
+//                        task.taskSessions?.append(session)
+                        sessions.items.append(session)
+                        // THIS (below) statement makes the app crash:
+//                        sessionsQuantity = (task.taskSessions?[0].name)!
+
 //                        let a = task.sessions?.count
                         task.totalTime += session.delta
-                        saveMessage = "Session info saved successfully."
-                        totalTimeString = ("Total time spent on \(task.name) is \(model.getDelta(intervalValue: task.totalTime))")
+                        saveMessage = "Session info saved successfully - this sh/could be an Alert."
+                        // totalTimeString = ("Total time spent on \(task.name) is \(sessions.getDelta(intervalValue: task.totalTime))")
+                        totalTimeString = ("Total time is \(sessions.getDelta(intervalValue: task.totalTime))")
                         
                         buttons.startB = true
                         buttons.stopB = false
@@ -116,11 +122,49 @@ struct TaskTimerView: View {
                     
                 }.padding()
                 
-                Text(fromDateString).padding()
-                Text(toDateString).padding()
-                Text(deltaString).multilineTextAlignment(.center).padding()
-                Text(saveMessage)
-//                Text(totalTimeString)
+                VStack {
+                    Text(fromDateString)
+                    Text(toDateString)
+                    Text(deltaString)
+                    Text(saveMessage)
+                    Text(totalTimeString)
+                    Text("Sessions saved for \(task.name): " + String(sessions.items.count))
+                }.multilineTextAlignment(.center).padding()
+                
+                List(0..<sessions.items.count) { item in
+                    Text("Hello, item \(item).")
+                }
+                    
+                    /*
+                    {
+                    ForEach(sessions.items, id: \.id) { item in
+                        NavigationLink(
+                            // "task" only appears once on this screen because that's the name of the variable that is passed to the next screen
+                            // that is, "task == tasks[item]" is True
+                            // This next appears in the receiver in TaskTimerView_Previews
+                            destination: SessionInfoView(session: item),
+//                            label: {Text("Text")})
+                            label: {Text("Text")})
+                    }.onDelete(perform: removeItems)
+                }
+                
+                
+//                let sessionsArray: [TaskSession] = (task.taskSessions)!
+//                List (sessionsArray, id: \.id) { item in
+//                    Text(item.getDateTime(dateValue: item.toDate))
+//                }
+//                List {
+
+                    ForEach(sessionsArray) { item in
+                        NavigationLink(
+                            // "task" only appears once on this screen because that's the name of the variable that is passed to the next screen
+                            // that is, "task == tasks[item]" is True
+                            // This next appears in the receiver in TaskTimerView_Previews
+                            destination: SessionInfoView(session: item),
+//                            label: {Text("Text")})
+                            label: {Text("Menu label")}) // item.name
+                    }.onDelete(perform: removeItems)  */
+//                }
                 
             }
             .tabItem {
@@ -142,23 +186,20 @@ struct TaskTimerView: View {
         }.navigationBarTitle(task.name)
     }
 }
+    
+    
+/*    func removeItems(at offsets: IndexSet) {
+        sessions.items.remove(atOffsets: offsets)
+    } */
+
 
 #if DEBUG
 struct TaskTimerView_Previews: PreviewProvider {
     
     static var previews: some View {
         
-        // The preview needs a value to initialize the task: Task property
+        // The preview needs a value to initialize the task:Task property
         TaskTimerView(task: Task())
-        
     }
 }
 #endif
-
-/*
-class TaskModel: ObservableObject {
-
-    @ Published var items = [Task]()
-
-}
-*/

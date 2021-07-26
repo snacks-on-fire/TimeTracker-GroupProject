@@ -11,7 +11,7 @@ class Task: Identifiable {
     
     var id = UUID()
     var name: String = ""
-    var sessions: [Session]?
+    var taskSessions: [TaskSession]?
     var totalTime: Double = Double()
 
 }

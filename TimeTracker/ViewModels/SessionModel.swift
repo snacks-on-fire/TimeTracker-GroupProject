@@ -9,16 +9,25 @@ import Foundation
 
 class SessionModel: ObservableObject {
     
-    @ Published var sessions = [Session]()
+    @ Published var items = [TaskSession]()
     
     // Methods
     
-    // This function converts Date() to String
+    // This function converts Date() to String of Date & Time
     func getDateTime(dateValue: Date) -> (String) {
         // Initializes the date and time formatter and sets the style:
         let formatter = DateFormatter()
         formatter.dateStyle = .short
         formatter.timeStyle = .medium
+        return formatter.string(from: dateValue)
+    }
+    
+    // This function converts Date() to String of Date only
+    func getDate(dateValue: Date) -> (String) {
+        // Initializes the date and time formatter and sets the style:
+        let formatter = DateFormatter()
+        formatter.dateStyle = .short
+//        formatter.timeStyle = .medium
         return formatter.string(from: dateValue)
     }
     
