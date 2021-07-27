@@ -47,6 +47,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2B2EA2AB26B09AF000D0D99B /* Data */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
 		2BBAEA4C26AB80C900AC843E = {
 			isa = PBXGroup;
 			children = (
@@ -66,6 +73,7 @@
 		2BBAEA5726AB80C900AC843E /* TimeTracker */ = {
 			isa = PBXGroup;
 			children = (
+				2B2EA2AB26B09AF000D0D99B /* Data */,
 				2BBAEA5826AB80C900AC843E /* TimeTrackerApp.swift */,
 				2BBAEAA626AB99F600AC843E /* Views */,
 				2BBAEAA726AB9A0900AC843E /* ViewModels */,
