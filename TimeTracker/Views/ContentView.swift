@@ -52,7 +52,7 @@ struct ContentView: View {
                 VStack {
                     
                     VStack {
-                        Text("This is the Charts and Graphssssssss view.").foregroundColor(.red)
+                        Text("This is the Charts and Graphs view.").foregroundColor(.red)
                         Text("This is some more text.").foregroundColor(.red)
                     }
                     List{
