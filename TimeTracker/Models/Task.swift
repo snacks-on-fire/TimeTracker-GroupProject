@@ -21,7 +21,7 @@ class Task: Identifiable {
     
     init() {
         id = UUID()
-        name = "default task name"
+        name = ""
         taskSessions = []
         totalTime = 0 // Double()
         

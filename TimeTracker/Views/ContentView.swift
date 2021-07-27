@@ -13,7 +13,7 @@ struct ContentView: View {
     @ObservedObject var sessions = SessionModel()
     @State private var rootWord = "Tasks"
     @State private var newWord = ""
-    
+        
     @State var task = Task()
     @State var tabIndex = 1
     @State var totalTimeArray: [TimeInterval] = []
@@ -25,7 +25,7 @@ struct ContentView: View {
             TabView(selection: $tabIndex) {
                 
                 VStack {
-//                    TextEditor(text: )
+                    // TextEditor(text: $task.name).onAppear { self.addNewTask() }
                     TextField("Add a task", text: $newWord, onCommit: addNewWord)
                         .textFieldStyle(RoundedBorderTextFieldStyle())
                         .autocapitalization(.none)
@@ -83,16 +83,26 @@ struct ContentView: View {
             totalTimeArray.append(tasks.items[index].totalTime)
         }
     }
-
+    
+//    func addNewTask() {
+//
+//        // Create an instance of Task & give it a name. Append to tasks
+//        let newTask = Task()
+//        newTask.name = task.name
+//        tasks.items.insert(newTask, at: 0)
+//
+//        newWord = ""
+//    }
+    
     func addNewWord() {
         // Format the newWord
         let answer = newWord.trimmingCharacters(in: .whitespacesAndNewlines)
-        
+
         // Make sure it has more than 0 characters
         guard answer.count > 0 else {
             return
         }
-        
+
         // Create an instance of Task & give it a name. Append to tasks
         let newTask = Task()
         newTask.name = answer
@@ -104,6 +114,21 @@ struct ContentView: View {
     
     func removeItems(at offsets: IndexSet) {
         tasks.items.remove(atOffsets: offsets)
+    }
+}
+
+public extension Binding where Value: Equatable {
+    init(_ source: Binding<Value?>, replacingNilWith nilProxy: Value) {
+        self.init(
+            get: { source.wrappedValue ?? nilProxy },
+            set: { newValue in
+                if newValue == nilProxy {
+                    source.wrappedValue = nil
+                }
+                else {
+                    source.wrappedValue = newValue
+                }
+        })
     }
 }
 
@@ -121,3 +146,6 @@ struct ContentView_Previews: PreviewProvider {
 
 // Archiving Swift objects with Codable
 // https://www.hackingwithswift.com/books/ios-swiftui/archiving-swift-objects-with-codable
+
+
+

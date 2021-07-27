@@ -12,4 +12,3 @@ class TaskModel: ObservableObject {
     @Published var items = [Task]()
 
 }
-
