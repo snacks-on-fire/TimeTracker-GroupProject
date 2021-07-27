@@ -25,7 +25,7 @@ struct ContentView: View {
             TabView(selection: $tabIndex) {
                 
                 VStack {
-                    // TextEditor(text: $task.name).onAppear { self.addNewTask() }
+//                     TextEditor(text: $task.name).onAppear { self.addNewTask() }
                     TextField("Add a task", text: $newWord, onCommit: addNewWord)
                         .textFieldStyle(RoundedBorderTextFieldStyle())
                         .autocapitalization(.none)
@@ -38,7 +38,7 @@ struct ContentView: View {
                                 // tasks.items[item] == item is passed to the task property in the TaskTimerView
                                 // Make sure the task is also passed in TaskTimerView_Previews to preview that View
                                 destination: TaskTimerView(task: item),
-                                label: {Text("new text" + item.name)})
+                                label: {Text(item.name)})
                         }.onDelete(perform: removeItems)
                     }
                 }
