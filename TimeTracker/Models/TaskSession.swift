@@ -9,10 +9,15 @@ import Foundation
 
 class TaskSession: Identifiable {
     
-    var id = UUID()
-    var name = "TaskSession Name"
-    var fromDate = Date()
-    var toDate = Date()
-    var delta: TimeInterval = 0
+    var id: UUID
+    var fromDate: Date
+    var toDate: Date
+    var delta: TimeInterval
     
+    init() {
+        id = UUID()
+        fromDate = Date()
+        toDate = Date()
+        delta = 0
+    }
 }

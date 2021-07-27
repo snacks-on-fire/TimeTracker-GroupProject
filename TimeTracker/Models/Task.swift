@@ -9,9 +9,25 @@ import Foundation
 
 class Task: Identifiable {
     
-    var id = UUID()
-    var name: String = ""
+    var id: UUID
+    var name: String
     var taskSessions: [TaskSession]?
-    var totalTime: Double = Double()
-
+    var totalTime: TimeInterval
+    
+    var startB: Bool
+    var stopB: Bool
+    var resetB: Bool
+    var saveB: Bool
+    
+    init() {
+        id = UUID()
+        name = "default task name"
+        taskSessions = []
+        totalTime = 0 // Double()
+        
+        startB = true
+        stopB = false
+        resetB = false
+        saveB = false
+    }
 }

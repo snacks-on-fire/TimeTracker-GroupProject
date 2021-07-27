@@ -9,7 +9,7 @@ import Foundation
 
 class SessionModel: ObservableObject {
     
-    @ Published var items = [TaskSession]()
+    @Published var items = [TaskSession]()
     
     // Methods
     

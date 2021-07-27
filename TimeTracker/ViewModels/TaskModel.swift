@@ -9,7 +9,7 @@ import Foundation
 
 class TaskModel: ObservableObject {
 
-    @ Published var items = [Task]()
+    @Published var items = [Task]()
 
 }
 

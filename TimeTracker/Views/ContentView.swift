@@ -13,6 +13,8 @@ struct ContentView: View {
     @State private var rootWord = "Tasks"
     @State private var newWord = ""
     
+    @State var task = Task()
+    
     var body: some View {
         NavigationView {
             VStack {
@@ -22,17 +24,16 @@ struct ContentView: View {
                     .padding()
                 
                 List {
-                    ForEach(tasks.items) { item in
+                    ForEach(tasks.items, id: \.id) { item in
                         NavigationLink(
-                            // "task" only appears once on this screen because that's the name of the variable that is passed to the next screen
-                            // that is, "task == tasks[item]" is True
-                            // This next appears in the receiver in TaskTimerView_Previews
+                            // TaskTimerView is expecting a task object of type Task()
+                            // tasks.items[item] == item is passed to the task property in the TaskTimerView
+                            // Make sure the task is also passed in TaskTimerView_Previews to preview that View
                             destination: TaskTimerView(task: item),
-//                            label: {Text("Text")})
                             label: {Text(item.name)})
                     }.onDelete(perform: removeItems)
                 }
-            }.navigationBarTitle(rootWord)
+            }.navigationBarTitle(rootWord, displayMode: .automatic)
         }
     }
 
@@ -48,7 +49,8 @@ struct ContentView: View {
         // Create an instance of Task & give it a name. Append to tasks
         let newTask = Task()
         newTask.name = answer
-        tasks.items.insert(newTask, at: 0)
+        task = newTask
+        tasks.items.insert(task, at: 0)
 
         newWord = ""
     }
