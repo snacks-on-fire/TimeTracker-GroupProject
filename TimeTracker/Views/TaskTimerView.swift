@@ -44,7 +44,7 @@ struct TaskTimerView: View {
                         // Text("This is the Timer View for \(task.name)")
                         // Text("This is the Timer View for \(task.id)")
                         // Text("Total time for \(task.name) is \(sessions.getDelta(intervalValue: task.totalTime)).")
-                        Text("Add Ticking Timer Label Here")
+                        Text("Add Ticking Timer Label Here").foregroundColor(.red)
                         Text("00:00:00")
                     }.multilineTextAlignment(.center).padding()
                     
@@ -107,6 +107,7 @@ struct TaskTimerView: View {
                             
     //                        sessionsCount = task.taskSessions?.count ?? 0
                             // The two lines of code below mean the same thing and both work equally well:
+                            // No, they don't. Sessions.items is a temporary storage, while task.taskSessions saves session info and moves it between screens
     //                        task.taskSessions?.append(session)
     //                        sessions.items.append(session)
                             // THIS (below) statement makes the app crash:
@@ -143,10 +144,10 @@ struct TaskTimerView: View {
                     }.padding()
                     
                     VStack {
-                        Text(fromDateString)
-                        Text(toDateString)
-                        Text(deltaString)
-                        Text(totalTimeString)
+                        Text(fromDateString).foregroundColor(.red)
+                        Text(toDateString).foregroundColor(.red)
+                        Text(deltaString).foregroundColor(.red)
+                        Text(totalTimeString).foregroundColor(.red)
 //                        Text("\(String(task.taskSessions?.count ?? 0)) sessions saved to task.taskSessions?.")
 //                        Text("\(String(sessions.items.count)) sessions saved to sessions.items.")
                         // The debugMessage is needed to keep the screen up-to-date :(
@@ -166,6 +167,9 @@ struct TaskTimerView: View {
                                     destination: SessionInfoView(task: task, session: item),
                                     label: {
                                         Text("\(sessions.getDateTime(dateValue: item.fromDate))")
+//                                        Text("\(String(sessionsArray.count))") returns item number
+//                                        Text("\(String(sessions.items.count))") returns 0
+//                                        Text("\(String(task.taskSessions?.count ?? 0))") returns item number
                                     })
                             }.onDelete(perform: removeItems)
                         }
@@ -192,8 +196,8 @@ struct TaskTimerView: View {
             
             
             VStack {
-                Text("This is the Picker view for \(task.name)")
-                Text("This is some more text.")
+                Text("This is the Picker view for \(task.name)").foregroundColor(.red)
+                Text("This is some more text.").foregroundColor(.red)
             }
             .tabItem {
                 VStack {

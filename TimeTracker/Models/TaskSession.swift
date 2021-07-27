@@ -13,11 +13,13 @@ class TaskSession: Identifiable {
     var fromDate: Date
     var toDate: Date
     var delta: TimeInterval
+    var notes: String
     
     init() {
         id = UUID()
         fromDate = Date()
         toDate = Date()
         delta = 0
+        notes = ""
     }
 }

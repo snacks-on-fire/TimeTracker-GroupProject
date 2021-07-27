@@ -10,30 +10,77 @@ import SwiftUI
 struct ContentView: View {
     
     @ObservedObject var tasks = TaskModel()
+    @ObservedObject var sessions = SessionModel()
     @State private var rootWord = "Tasks"
     @State private var newWord = ""
     
     @State var task = Task()
+    @State var tabIndex = 1
+    @State var totalTimeArray: [TimeInterval] = []
     
     var body: some View {
+            
         NavigationView {
-            VStack {
-                TextField("Add a task", text: $newWord, onCommit: addNewWord)
-                    .textFieldStyle(RoundedBorderTextFieldStyle())
-                    .autocapitalization(.none)
-                    .padding()
+            
+            TabView(selection: $tabIndex) {
                 
-                List {
-                    ForEach(tasks.items, id: \.id) { item in
-                        NavigationLink(
-                            // TaskTimerView is expecting a task object of type Task()
-                            // tasks.items[item] == item is passed to the task property in the TaskTimerView
-                            // Make sure the task is also passed in TaskTimerView_Previews to preview that View
-                            destination: TaskTimerView(task: item),
-                            label: {Text(item.name)})
-                    }.onDelete(perform: removeItems)
+                VStack {
+//                    TextEditor(text: )
+                    TextField("Add a task", text: $newWord, onCommit: addNewWord)
+                        .textFieldStyle(RoundedBorderTextFieldStyle())
+                        .autocapitalization(.none)
+                        .padding()
+                    
+                    List {
+                        ForEach(tasks.items, id: \.id) { item in
+                            NavigationLink(
+                                // TaskTimerView is expecting a task object of type Task()
+                                // tasks.items[item] == item is passed to the task property in the TaskTimerView
+                                // Make sure the task is also passed in TaskTimerView_Previews to preview that View
+                                destination: TaskTimerView(task: item),
+                                label: {Text(item.name)})
+                        }.onDelete(perform: removeItems)
+                    }
                 }
+                .tabItem {
+                    VStack {
+                        Image(systemName: "list.bullet")
+                        Text("Task List")
+                    }
+                }.tag(1)
+            
+                VStack {
+                    
+                    VStack {
+                        Text("This is the Charts and Graphs view.").foregroundColor(.red)
+                        Text("This is some more text.").foregroundColor(.red)
+                    }
+                    List{
+                        HStack{
+                            Text("Task title:   ")
+                            Text("Total time")
+                        }
+                        ForEach(tasks.items, id: \.id) { item in
+                            HStack{
+                                Text(item.name + ":   ")
+                                Text(sessions.getDelta(intervalValue: item.totalTime))
+                            }
+                        }
+                    }.onAppear { self.getTotalTimeArray() }
+                }
+                .tabItem {
+                    VStack {
+                        Image(systemName: "chart.pie")
+                        Text("Statistics")
+                    }
+                }.tag(2)
             }.navigationBarTitle(rootWord, displayMode: .automatic)
+        }
+    }
+    
+    func getTotalTimeArray() {
+        for index in 0...tasks.items.count-1 {
+            totalTimeArray.append(tasks.items[index].totalTime)
         }
     }
 
