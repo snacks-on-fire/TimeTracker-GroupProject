@@ -55,29 +55,27 @@ struct SessionInfoView: View {
     }
     
     func save() {
-        task.taskSessions?.remove(at: sessionIndex)
-        task.taskSessions?.insert(session, at: sessionIndex)
+        task.taskSessions.remove(at: sessionIndex)
+        task.taskSessions.insert(session, at: sessionIndex)
     }
     
     func getSessionInfo() {
         
         // Determine the index of the selected session in the task.taskSessions array
-        guard let index = task.taskSessions?.firstIndex(where: {$0.id == session.id}) else {
+        guard let index = task.taskSessions.firstIndex(where: {$0.id == session.id}) else {
             print("Could not find the given UUID")
             return
         }
         
         // Convert the weird type into an integer using the extention at the bottom of the page
-        sessionIndex = task.taskSessions?.distance(to: index) ?? 0
+        sessionIndex = task.taskSessions.distance(to: index)
         
         // Get session info for the TaskSession instance
-        if let y = task.taskSessions {
-            sessionsArray = y
 
-            fromDateString = ("Session start: " + sessions.getDateTime(dateValue: sessionsArray[index].fromDate))
-            toDateString = ("Session end: " + sessions.getDateTime(dateValue: sessionsArray[index].toDate))
-            deltaString = ("Session length: " + sessions.getDelta(intervalValue: sessionsArray[index].delta))
-        }
+        fromDateString = ("Session start: " + sessions.getDateTime(dateValue: task.taskSessions[index].fromDate))
+        toDateString = ("Session end: " + sessions.getDateTime(dateValue: task.taskSessions[index].toDate))
+        deltaString = ("Session length: " + sessions.getDelta(intervalValue: task.taskSessions[index].delta))
+        
         
         totalTimeString = ("Total time recorded for \(task.name): \(sessions.getDelta(intervalValue: task.totalTime))")
     }

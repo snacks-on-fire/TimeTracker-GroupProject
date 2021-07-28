@@ -212,7 +212,7 @@ struct TaskTimerView: View {
     }
     
     func removeItems(at offsets: IndexSet) {
-        task.taskSessions?.remove(atOffsets: offsets)
+        task.taskSessions.remove(atOffsets: offsets)
         
         // Leave this in, the changing debugMessage forces the View to update...
         counter += 1
@@ -220,7 +220,7 @@ struct TaskTimerView: View {
     }
     
     func save() {
-        task.taskSessions?.append(session)
+        task.taskSessions.append(session)
     }
     
 }

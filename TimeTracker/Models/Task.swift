@@ -11,7 +11,7 @@ class Task: Identifiable {
     
     var id: UUID
     var name: String
-    var taskSessions: [TaskSession]?
+    var taskSessions: [TaskSession]
     var totalTime: TimeInterval
     
     var startB: Bool
