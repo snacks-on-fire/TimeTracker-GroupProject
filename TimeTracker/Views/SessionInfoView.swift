@@ -12,11 +12,9 @@ struct SessionInfoView: View {
     // Property task of type Task. This property does not have an initial value.
     // This way the memberwise initializer init(task:) is automatically created.
     // The value is passed to the task property from ContentView.
-    @State var task: Task
+    @EnvironmentObject var task: Task
     @State var session: TaskSession
     @ObservedObject var sessions = SessionModel()
-    
-    @State var sessionsArray = [TaskSession]()
     
     @State var fromDateString = ""
     @State var toDateString = ""
@@ -81,12 +79,14 @@ struct SessionInfoView: View {
     }
 }
 
-struct SessionInfoView_Previews: PreviewProvider {
-    static var previews: some View {
-        SessionInfoView(task: Task(), session: TaskSession())
-    }
-}
-
 extension Collection {
     func distance(to index: Index) -> Int { distance(from: startIndex, to: index) }
+}
+
+
+
+struct SessionInfoView_Previews: PreviewProvider {
+    static var previews: some View {
+        SessionInfoView(session: TaskSession()).environmentObject(Task())
+    }
 }

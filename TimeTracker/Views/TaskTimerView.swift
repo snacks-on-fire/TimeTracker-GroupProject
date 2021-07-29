@@ -14,9 +14,12 @@ struct TaskTimerView: View {
     // Property task of type Task. This property does not have an initial value.
     // This way the memberwise initializer init(task:) is automatically created.
     // The value is passed to the task property from ContentView.
-    @State var task: Task
+    
+    // Actually, now (task: ) is passed as an @EnvironmentObject, so it does not have to be explicitly passed from view to view, but will automatically be passed to every view downstream from the ContentView, where it is passed using .environmentObject(task) attached to the List view housing the Navigation Link
+    @EnvironmentObject var task: Task
     @ObservedObject var tasks = TaskModel() //***
     
+    // I will leave (session: Task session) as an argument in the NavigationLink on this page to keep an example of memberwise initialization for passing variables to another view because the @EnvironmentObject mathod is really only superior when there are many downstream views requiring the same instance.
     @State var session = TaskSession()
     @ObservedObject var sessions = SessionModel()
     
@@ -164,7 +167,7 @@ struct TaskTimerView: View {
                             let sessionsArray = x
                             ForEach(sessionsArray, id: \.id) { item in
                                 NavigationLink(
-                                    destination: SessionInfoView(task: task, session: item),
+                                    destination: SessionInfoView(session: item),
                                     label: {
                                         Text("\(sessions.getDateTime(dateValue: item.fromDate))")
 //                                        Text("\(String(sessionsArray.count))") returns item number
@@ -231,7 +234,8 @@ struct TaskTimerView_Previews: PreviewProvider {
     static var previews: some View {
         
         // The preview needs a value to initialize the task:Task property
-        TaskTimerView(task: Task())
+        // The preview no longer needs the (task: ) initializer because I am using @EnvironmentObject to share the instance between views
+        TaskTimerView().environmentObject(Task())
     }
 }
 #endif

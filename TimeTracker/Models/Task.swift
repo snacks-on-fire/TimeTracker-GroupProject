@@ -7,7 +7,7 @@
 
 import Foundation
 
-class Task: Identifiable {
+class Task: Identifiable, ObservableObject {
     
     var id: UUID
     var name: String

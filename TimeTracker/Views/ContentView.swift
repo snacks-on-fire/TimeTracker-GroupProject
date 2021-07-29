@@ -37,10 +37,10 @@ struct ContentView: View {
                                 // TaskTimerView is expecting a task object of type Task()
                                 // tasks.items[item] == item is passed to the task property in the TaskTimerView
                                 // Make sure the task is also passed in TaskTimerView_Previews to preview that View
-                                destination: TaskTimerView(task: item),
+                                destination: TaskTimerView(),
                                 label: {Text(item.name)})
                         }.onDelete(perform: removeItems)
-                    }
+                    }.environmentObject(task)
                 }
                 .tabItem {
                     VStack {
