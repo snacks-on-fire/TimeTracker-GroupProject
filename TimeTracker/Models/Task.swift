@@ -9,15 +9,15 @@ import Foundation
 
 class Task: Identifiable, ObservableObject {
     
-    var id: UUID
-    var name: String
-    var taskSessions: [TaskSession]
-    var totalTime: TimeInterval
+    @Published var id: UUID
+    @Published var name: String
+    @Published var taskSessions: [TaskSession]
+    @Published var totalTime: TimeInterval
     
-    var startB: Bool
-    var stopB: Bool
-    var resetB: Bool
-    var saveB: Bool
+    @Published var startB: Bool
+    @Published var stopB: Bool
+    @Published var resetB: Bool
+    @Published var saveB: Bool
     
     init() {
         id = UUID()

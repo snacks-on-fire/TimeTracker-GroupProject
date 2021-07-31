@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SwiftUICharts
 
 struct ContentView: View {
     
@@ -37,7 +38,7 @@ struct ContentView: View {
                                 // TaskTimerView is expecting a task object of type Task()
                                 // tasks.items[item] == item is passed to the task property in the TaskTimerView
                                 // Make sure the task is also passed in TaskTimerView_Previews to preview that View
-                                destination: TaskTimerView(),
+                                destination: TaskTimerView(task: item),
                                 label: {Text(item.name)})
                         }.onDelete(perform: removeItems)
                     }.environmentObject(task)
@@ -53,7 +54,7 @@ struct ContentView: View {
                     
                     VStack {
                         Text("This is the Charts and Graphs view.").foregroundColor(.red)
-                        Text("This is some more text.").foregroundColor(.red)
+                        PieChartView(data: totalTimeArray, title: "Title", legend: "Legendary") // legend is optional
                     }
                     List{
                         HStack{
@@ -106,8 +107,7 @@ struct ContentView: View {
         // Create an instance of Task & give it a name. Append to tasks
         let newTask = Task()
         newTask.name = answer
-        task = newTask
-        tasks.items.insert(task, at: 0)
+        tasks.items.insert(newTask, at: 0)
 
         newWord = ""
     }
