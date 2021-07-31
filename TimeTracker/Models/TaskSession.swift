@@ -7,13 +7,13 @@
 
 import Foundation
 
-class TaskSession: Identifiable, ObservableObject {
+class TaskSession: Identifiable {
     
-    @Published var id: UUID
-    @Published var fromDate: Date
-    @Published var toDate: Date
-    @Published var delta: TimeInterval
-    @Published var notes: String
+    var id: UUID
+    var fromDate: Date
+    var toDate: Date
+    var delta: TimeInterval
+    var notes: String
     
     init() {
         id = UUID()

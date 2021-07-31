@@ -41,7 +41,7 @@ struct ContentView: View {
                                 destination: TaskTimerView(task: item),
                                 label: {Text(item.name)})
                         }.onDelete(perform: removeItems)
-                    }.environmentObject(task)
+                    }
                 }
                 .tabItem {
                     VStack {

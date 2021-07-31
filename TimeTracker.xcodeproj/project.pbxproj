@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2B1E36D026B59BC600C88129 /* TimeTrackerDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2B1E36CE26B59BC600C88129 /* TimeTrackerDataModel.xcdatamodeld */; };
 		2BBAEA5926AB80C900AC843E /* TimeTrackerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BBAEA5826AB80C900AC843E /* TimeTrackerApp.swift */; };
 		2BBAEA5B26AB80C900AC843E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BBAEA5A26AB80C900AC843E /* ContentView.swift */; };
 		2BBAEA5D26AB80CB00AC843E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2BBAEA5C26AB80CB00AC843E /* Assets.xcassets */; };
@@ -22,6 +23,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2B1E36CF26B59BC600C88129 /* TimeTrackerDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TimeTrackerDataModel.xcdatamodel; sourceTree = "<group>"; };
 		2BBAEA5526AB80C900AC843E /* TimeTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TimeTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2BBAEA5826AB80C900AC843E /* TimeTrackerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeTrackerApp.swift; sourceTree = "<group>"; };
 		2BBAEA5A26AB80C900AC843E /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -49,6 +51,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2B1E36D226B59BD000C88129 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				2B1E36CE26B59BC600C88129 /* TimeTrackerDataModel.xcdatamodeld */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
 		2BBAEA4C26AB80C900AC843E = {
 			isa = PBXGroup;
 			children = (
@@ -72,6 +82,7 @@
 				2BBAEAA626AB99F600AC843E /* Views */,
 				2BBAEAA726AB9A0900AC843E /* ViewModels */,
 				2BBAEA6826AB80EE00AC843E /* Models */,
+				2B1E36D226B59BD000C88129 /* Data */,
 				2BBAEA5C26AB80CB00AC843E /* Assets.xcassets */,
 				2BBAEA6126AB80CB00AC843E /* Info.plist */,
 				2BBAEA5E26AB80CB00AC843E /* Preview Content */,
@@ -200,6 +211,7 @@
 				2BBAEB7826AD85D100AC843E /* SessionModel.swift in Sources */,
 				2BBAEBBF26AE835500AC843E /* SessionInfoView.swift in Sources */,
 				2BBAEB6426AC4EA500AC843E /* ModeSwitchView.swift in Sources */,
+				2B1E36D026B59BC600C88129 /* TimeTrackerDataModel.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -405,6 +417,19 @@
 			productName = SwiftUICharts;
 		};
 /* End XCSwiftPackageProductDependency section */
+
+/* Begin XCVersionGroup section */
+		2B1E36CE26B59BC600C88129 /* TimeTrackerDataModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				2B1E36CF26B59BC600C88129 /* TimeTrackerDataModel.xcdatamodel */,
+			);
+			currentVersion = 2B1E36CF26B59BC600C88129 /* TimeTrackerDataModel.xcdatamodel */;
+			path = TimeTrackerDataModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 2BBAEA4D26AB80C900AC843E /* Project object */;
 }
