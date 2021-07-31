@@ -9,12 +9,10 @@ import SwiftUI
 
 @main
 struct TimeTrackerApp: App {
-    @StateObject var task = Task()
     
     var body: some Scene {
         WindowGroup {
             ContentView()
-                .environmentObject(task)
         }
     }
 }
