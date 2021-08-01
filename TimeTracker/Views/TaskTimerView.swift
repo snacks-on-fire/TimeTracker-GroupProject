@@ -36,6 +36,10 @@ struct TaskTimerView: View {
     @State var debugMessage = ""
     @State var counter = 0
     
+    //Picker Var
+    @State var selectedHours: Int = 0
+    @State var selectedMinutes: Int = 0
+
     var body: some View {
         TabView(selection: $tabIndex) {
             
@@ -197,10 +201,26 @@ struct TaskTimerView: View {
             
             
             
-            
+            // pickerview
             VStack {
                 Text("This is the Picker view for \(task.name)").foregroundColor(.red)
-                Text("This is some more text.").foregroundColor(.red)
+               // Text("Session Duration: ").foregroundColor(.red)
+                HStack {
+                    Picker("", selection: $selectedHours){
+                        ForEach(0..<24, id: \.self) { i in
+                            Text("\(i) hours").tag(i)
+                        }
+                    }.pickerStyle(WheelPickerStyle()).frame(width: 100).clipped()
+                
+                    Picker("", selection: $selectedMinutes){
+                        ForEach(0..<60, id: \.self) { i in
+                            Text("\(i) min").tag(i)
+                        }
+                    }.pickerStyle(WheelPickerStyle()).frame(width: 100).clipped()
+                    
+                }.padding(.horizontal)
+                
+                Text("Session Duration: \(selectedHours) hours and \(selectedMinutes) minutes")
             }
             .tabItem {
                 VStack {
